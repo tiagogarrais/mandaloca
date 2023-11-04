@@ -1,15 +1,31 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import Link from 'next/link'
+import Anuncios from "/components/Anuncios"
 
 
 export default function Home() {
   const { data: session } = useSession()
+  if (session) {
     return (
       <>
-        <h1>Esta é a página inicial</h1>
-        <p><Link href='/acesso-com-login'>Clique aqui para acessar a área protegida</Link></p>
-        <p><Link href='/api/restrito'>Clique aqui para acessar a API protegida</Link></p>        
+        Bem vindo(a) {session.user.email} -
+        <a>
+          <span onClick={() => signOut()}> Desconectar</span>
+        </a>
+        <div className="button">
+          <Link href="/cadastro">Cadastrar anúncio</Link>
+        </div>
+        <Anuncios />
       </>
-    )
-
+    );
+  }
+  return (
+    <>
+      Você não está conectado <br />
+      <div className="button" onClick={() => signIn()}>
+        Entrar
+      </div>
+      <br />
+    </>
+  );
 }
