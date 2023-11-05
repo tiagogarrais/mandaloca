@@ -1,16 +1,15 @@
-import { useSession, signIn, signOut } from "next-auth/react"
-import Link from 'next/link'
-import Anuncios from "/components/Anuncios"
-
+import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import Anuncios from "/components/Anuncios";
 
 export default function Home() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
   if (session) {
     return (
       <>
         Bem vindo(a) {session.user.email} -
         <a>
-          <span onClick={() => signOut()}> Desconectar</span>
+          <button onClick={() => signOut()}> Desconectar</button>
         </a>
         <div className="button">
           <Link href="/cadastro">Cadastrar anúncio</Link>

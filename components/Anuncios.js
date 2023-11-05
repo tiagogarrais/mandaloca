@@ -1,6 +1,31 @@
 import Image from "next/image";
 import React from "react";
 import { useGeolocated } from "react-geolocated";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+
+const images = [
+  {
+    original: "/images/casa.png",
+    thumbnail: "/images/casa.png",
+  },
+  {
+    original: "/images/casa.png",
+    thumbnail: "/images/casa.png",
+  },
+  {
+    original: "/images/casa.png",
+    thumbnail: "/images/casa.png",
+  },
+  {
+    original: "/images/casa.png",
+    thumbnail: "/images/casa.png",
+  },
+  {
+    original: "/images/casa.png",
+    thumbnail: "/images/casa.png",
+  },
+];
 
 const CoordGps = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
@@ -14,7 +39,7 @@ const CoordGps = () => {
   return !isGeolocationAvailable ? (
     <div>Seu navegador parece não suportar geolocalização</div>
   ) : !isGeolocationEnabled ? (
-    <div>Aguarde 5 segundos ou habilite a geolocalização no seu navegador</div>
+    <div>Habilite a geolocalização no seu navegador</div>
   ) : coords ? (
     <div>
       <form>
@@ -31,20 +56,17 @@ const CoordGps = () => {
               </label>
               <br />
               <label>
-                <p>
-                  A descrição do anúncio aparecerá aqui. Os detalhes devem ser
-                  descritos de forma resumida, mas consistente.
-                </p>
+                <p>A descrição do anúncio aparecerá aqui.</p>
               </label>
               <br />
               <label>
-                <Image src="/images/casa.png" width="400" height="400" />
+                <ImageGallery
+                  showThumbnails={false}
+                  autoPlay={true}
+                  items={images}
+                />{" "}
               </label>
-              <br />
-              Casa para venda
-              <br />
-              Casa para aluguel
-              <br />
+
               <button>
                 <a
                   href={`https://maps.google.com/?q=${coords.latitude},${coords.longitude}`}
