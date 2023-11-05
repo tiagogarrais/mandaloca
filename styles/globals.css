@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-  @apply text-3xl pt-6 pb-6 pl-3 pr-3 bg-gray-600 text-center font-bold text-white;
+  @apply hover:bg-blue-700 text-3xl pt-6 pb-6 pl-3 pr-3 bg-gray-600 text-center font-bold text-white;
 }
 
 h2 {
@@ -28,4 +28,8 @@ h5 {
 
 h6 {
   @apply text-2xl p-2 text-center mb-2 mt-2;
+}
+
+button {
+  @apply bg-gray-500 hover:bg-blue-700 text-white font-bold m-1 px-4 rounded;
 }
