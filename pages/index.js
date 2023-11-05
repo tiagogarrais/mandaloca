@@ -11,19 +11,26 @@ export default function Home() {
         <a>
           <button onClick={() => signOut()}> Desconectar</button>
         </a>
-        <div className="button">
+        <button>
           <Link href="/cadastro">Cadastrar anúncio</Link>
+        </button>
+        <div class="container my-4 mx-auto md:px-12">
+          <div class="flex flex-wrap">
+            <Anuncios />
+            <Anuncios />
+            <Anuncios />
+            <Anuncios />
+            <Anuncios />
+            <Anuncios />
+          </div>
         </div>
-        <Anuncios />
       </>
     );
   }
   return (
     <>
       Você não está conectado <br />
-      <div className="button" onClick={() => signIn()}>
-        Entrar
-      </div>
+      <button onClick={() => signIn()}>Entrar</button>
       <br />
     </>
   );

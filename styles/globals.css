@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-  @apply hover:bg-blue-700 text-3xl pt-6 pb-6 pl-3 pr-3 bg-gray-600 text-center font-bold text-white;
+  @apply hover:bg-blue-500 text-3xl pt-6 pb-6 pl-3 pr-3 bg-gray-600 text-center font-bold text-white;
 }
 
 h2 {
@@ -31,5 +31,5 @@ h6 {
 }
 
 button {
-  @apply bg-gray-500 hover:bg-blue-700 text-white font-bold m-1 px-4 rounded;
+  @apply bg-gray-500 hover:bg-blue-500 text-white font-bold m-1 px-4 rounded;
 }

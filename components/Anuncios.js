@@ -41,47 +41,30 @@ const CoordGps = () => {
   ) : !isGeolocationEnabled ? (
     <div>Habilite a geolocalização no seu navegador</div>
   ) : coords ? (
-    <div>
-      <form>
-        <h2>Todos os anúncios</h2>
-        <div className="flex flex-wrap">
-          <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
-            <article>
-              <label>
-                <h3>Título do anúncio</h3>
-              </label>
-              <br />
-              <label>
-                <h4>R$ 50.000,00</h4>
-              </label>
-              <br />
-              <label>
-                <p>A descrição do anúncio aparecerá aqui.</p>
-              </label>
-              <br />
-              <label>
-                <ImageGallery
-                  showThumbnails={false}
-                  autoPlay={true}
-                  items={images}
-                />{" "}
-              </label>
-
-              <button>
-                <a
-                  href={`https://maps.google.com/?q=${coords.latitude},${coords.longitude}`}
-                  target="_blank"
-                >
-                  Verificar localização no Google Maps
-                </a>
-              </button>
-            </article>
-          </div>
-        </div>
-      </form>
-    </div>
+    <article className="bg-gray-400 rounded-2xl my-1 px-1 py-1 w-full md:w-1/2 lg:w-1/3">
+      <label>
+        <h3 className="rounded-2xl">Título do anúncio</h3>
+      </label>
+      <label>
+        <h4 className="rounded-2xl">R$ 50.000,00</h4>
+      </label>
+      <label>
+        <p>A descrição do anúncio aparecerá aqui.</p>
+      </label>
+      <label>
+        <ImageGallery showThumbnails={false} autoPlay={true} items={images} />{" "}
+      </label>
+      <button className="rounded-2xl">
+        <a
+          href={`https://maps.google.com/?q=${coords.latitude},${coords.longitude}`}
+          target="_blank"
+        >
+          Verificar localização no Google Maps
+        </a>
+      </button>
+    </article>
   ) : (
-    <div>Buscando dados de localização&hellip; </div>
+    <div>Aguarde...&hellip; </div>
   );
 };
 
