@@ -7,7 +7,8 @@ export default function Home() {
   if (session) {
     return (
       <>
-        Bem vindo(a) {session.user.email} -
+        Bem vindo(a) {session.user.email}
+        <hr />
         <a>
           <button onClick={() => signOut()}> Desconectar</button>
         </a>
