@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { useState } from "react";
 import { useGeolocated } from "react-geolocated";
 
