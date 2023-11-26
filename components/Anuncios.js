@@ -46,6 +46,11 @@ export default function Anuncios() {
             Verificar localização no Google Maps
           </a>
         </button>
+        <a href="https://wa.me/5500000000000" target="_blank">
+          <button>
+            <Image width={250} height={40} src={"/images/whatsapp.png"} />
+          </button>
+        </a>
       </article>
     </>
   );
