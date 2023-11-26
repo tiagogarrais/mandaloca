@@ -1,20 +1,30 @@
-import Link from "next/link";
-import CoordGps from "./CoordGps";
-import { UseForm, useForm } from "react-hook-form";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import CoordGps from "./CoordGps";
 
 export default function CadastroForm() {
   const [output, setOutput] = useState("");
+  const [file, setFile] = useState();
   const { register, handleSubmit } = useForm();
 
-  function criarAnuncio(data) {
+  async function criarAnuncio(data) {
     setOutput(JSON.stringify(data, null, 2));
   }
+
+  const onSubmit = async (data) => {
+    try {
+      if (!file) throw new Error("File not selected");
+
+      await criarAnuncio(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit(criarAnuncio)}>
+        <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
           <h2>Cadastre seu anúncio</h2>
           <article className="flex flex-col bg-gray-200">
             <label>
@@ -46,9 +56,8 @@ export default function CadastroForm() {
               <input type="file" />
             </label>
             <CoordGps />
-            <div>
-              <button>Enviar anúncio</button>
-            </div>
+
+            <button type="submit">Enviar anúncio</button>
           </article>
         </form>
         <pre>{output}</pre>

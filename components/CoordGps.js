@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useGeolocated } from "react-geolocated";
 
+const CoordGpsState = () => {
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+};
+
 const CoordGps = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled, timestamp } =
     useGeolocated({
