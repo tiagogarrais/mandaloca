@@ -4,12 +4,38 @@ import CoordGps from "./CoordGps";
 
 export default function CadastroForm() {
   const [output, setOutput] = useState("");
-  const [file, setFile] = useState();
+  const [file, setFile] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
   const { register, handleSubmit } = useForm();
 
-  async function criarAnuncio(data) {
-    setOutput(JSON.stringify(data, null, 2));
-  }
+  const criarAnuncio = async (data) => {
+    // Inclua latitude e longitude no objeto de dados
+    const dadosComLocalizacao = { ...data, latitude, longitude };
+    setOutput(JSON.stringify(dadosComLocalizacao, null, 2));
+
+    try {
+      // Envia os dados para o servidor (substitua pela URL do seu servidor)
+      const response = await fetch("URL_DO_SEU_SERVIDOR", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosComLocalizacao),
+      });
+
+      if (response.ok) {
+        // A resposta foi bem-sucedida, você pode lidar com isso aqui
+        console.log("Dados enviados com sucesso!");
+      } else {
+        // A resposta não foi bem-sucedida, lida com isso aqui
+        console.error("Erro ao enviar dados para o servidor.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -19,6 +45,11 @@ export default function CadastroForm() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleLocationChange = (newLocation) => {
+    setLatitude(newLocation.latitude);
+    setLongitude(newLocation.longitude);
   };
 
   return (
@@ -55,7 +86,18 @@ export default function CadastroForm() {
               Foto:
               <input type="file" />
             </label>
-            <CoordGps />
+
+            {/* Inputs hidden para armazenar latitude e longitude */}
+            <input
+              type="hidden"
+              {...register("latitude", { value: latitude })}
+            />
+            <input
+              type="hidden"
+              {...register("longitude", { value: longitude })}
+            />
+
+            <CoordGps onLocationChange={handleLocationChange} />
 
             <button type="submit">Enviar anúncio</button>
           </article>
